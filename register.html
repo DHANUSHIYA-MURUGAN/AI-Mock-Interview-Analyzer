@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="register-wrapper">
+
+    <!-- LEFT -->
+    <div class="left-panel">
+
+        <h1>AI Mock Interview</h1>
+
+        <h2 style="margin-top:30px;">
+           🚀 Create your account and start your interview journey.
+        </h2>
+
+        <p style="margin-top:20px;color:#cbd5e1;">
+            Practice AI interviews, analyze emotions,
+            improve confidence and track performance.
+        </p>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-panel">
+
+        <h1 class="form-title">
+            Create Account
+        </h1>
+
+        <form method="POST">
+
+              <div class="form-grid">
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text"
+                   name="fullname"
+                   placeholder="Enter full name"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text"
+                   name="username"
+                   placeholder="Enter username"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email"
+                   name="email"
+                   placeholder="Enter email"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>Mobile</label>
+            <input type="text"
+                   name="mobile"
+                   placeholder="Enter mobile"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>Gender</label>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password"
+                   name="password"
+                   placeholder="Enter password"
+                   required>
+        </div>
+
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password"
+                   name="confirm_password"
+                   placeholder="Confirm password"
+                   required>
+        </div>
+
+    </div>
+
+    <button type="submit" class="register-btn">
+        Register
+    </button>
+    
+          <p style="margin-top:15px;">
+                Already have account?
+               <a href="/login">Login</a>
+         </p>
+
+
+        </form>
+
+    </div>
+
+</div>
+        
+
+
+</body>
+</html>
+

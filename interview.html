@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body data-questions='{{ questions | tojson | safe }}'>
+
+<!-- ☰ MENU -->
+<span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+<div id="sidebar" class="sidebar">
+    <h2>AI Interview</h2>
+    <a href="/">🏠 Home</a>
+    <a href="/interview" class="active">🎤 Interview</a>
+    <a href="/result">📊 Result</a>
+</div>
+
+<div class="main">
+    <div class="auth-bar">
+    <span id="userDisplay"></span>
+</div>
+
+<!-- TOP BAR -->
+<div class="top-bar panel">
+
+    <!-- TOP HEADER -->
+    <div class="top-header">
+
+        <!-- LEFT SIDE -->
+        <div class="top-left">
+
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+
+            <p id="progress-text">Question 1 of 5</p>
+
+            <h3 id="timer">Time: 2:00</h3>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="user-section">
+
+            <span class="username">
+                👤 admin
+            </span>
+
+            <button class="logout-btn"
+                    onclick="window.location.href='/logout'">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- MAIN GRID -->
+    <div class="interview-container">
+
+        <!-- LEFT PANEL -->
+        <div class="panel">
+
+            <h2 id="question"></h2>
+
+            <textarea id="answer" placeholder="Type or speak your answer..."></textarea>
+
+            <div class="btn-group">
+                <button id="voiceBtn" onclick="startVoice()">🎤 Speak</button>
+                <button onclick="submitAnswer()">Submit</button>
+            </div>
+
+            <!-- AI RESULT -->
+            <div id="result" class="panel" style="margin-top:15px;"></div>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="panel">
+
+            <div style="position:relative;">
+                <video id="video" autoplay></video>
+
+                <!-- AI STATUS -->
+               <div class="ai-status">
+                  AI Monitoring Active
+               </div>
+            </div>
+
+            <p style="text-align:center;margin-top:10px;">Live Camera </p>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+protectPage();
+</script>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
+

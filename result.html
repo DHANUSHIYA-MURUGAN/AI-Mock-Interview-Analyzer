@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Result</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- ☰ MENU -->
+<span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+    <h2>AI Interview</h2>
+
+    <a href="/">🏠 Home</a>
+    <a href="/interview">🎤 Interview</a>
+    <a href="/result" class="active">📊 Result</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- HEADER -->
+    <div class="panel" style="text-align:center;">
+
+        <h1>📊 AI Interview Report</h1>
+
+        <h2 id="score">Score: 0</h2>
+
+        <!-- PROGRESS BAR -->
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+
+    </div>
+
+    <!-- RESULT GRID -->
+    <div class="interview-container">
+
+        <!-- CONTENT -->
+        <div class="panel">
+            <h2>🧠 Content Analysis</h2>
+
+            <div id="contentBox"></div>
+        </div>
+
+        <!-- VOICE -->
+        <div class="panel">
+            <h2>🎤 Voice Analysis</h2>
+
+            <div id="voiceBox"></div>
+        </div>
+
+        <!-- EMOTION -->
+        <div class="panel">
+            <h2>😊 Emotion Analysis</h2>
+
+            <div id="emotionBox"></div>
+        </div>
+
+        <!-- SUGGESTIONS -->
+        <div class="panel">
+            <h2>💡 Suggestions</h2>
+
+            <div id="suggestionBox"></div>
+        </div>
+
+    </div>
+
+    <!-- BUTTON -->
+    <div style="text-align:center; margin-top:30px;">
+        <a href="/interview">
+            <button>Try Again</button>
+        </a>
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+
+function toggleMenu() {
+
+    document.getElementById("sidebar")
+        .classList.toggle("active");
+
+    document.querySelector(".main")
+        .classList.toggle("shift");
+}
+
+/* LOAD RESULT DATA */
+
+let data = JSON.parse(localStorage.getItem("resultData"));
+
+if(data){
+
+    /* SCORE */
+    document.getElementById("score").innerText =
+        "Score: " + data.score;
+
+    /* PROGRESS BAR */
+    document.getElementById("progress-bar").style.width =
+        data.score + "%";
+
+    /* ARRAYS */
+    let content = [];
+    let voice = [];
+    let emotion = [];
+    let suggestions = [];
+
+    /* SPLIT FEEDBACK */
+    data.feedback.forEach(f => {
+
+        let text = f.toLowerCase();
+
+        if(
+            text.includes("short") ||
+            text.includes("detailed") ||
+            text.includes("answer")
+        ){
+            content.push(f);
+        }
+
+        else if(
+            text.includes("tone") ||
+            text.includes("confident") ||
+            text.includes("hesitation")
+        ){
+            voice.push(f);
+        }
+
+        else if(
+            text.includes("positive") ||
+            text.includes("nervous") ||
+            text.includes("emotion")
+        ){
+            emotion.push(f);
+        }
+
+        else{
+            suggestions.push(f);
+        }
+
+    });
+
+    /* DISPLAY */
+    document.getElementById("contentBox").innerHTML =
+        "<b>Summary:</b><br>" +
+        content.join("<br>");
+
+    document.getElementById("voiceBox").innerHTML =
+        "<b>Speaking Style:</b><br>" +
+        voice.join("<br>");
+
+    document.getElementById("emotionBox").innerHTML =
+        "<b>Dominant Emotion:</b><br>" +
+        emotion.join("<br>");
+
+    document.getElementById("suggestionBox").innerHTML =
+        suggestions.join("<br>");
+
+}
+
+</script>
+
+</body>
+</html>
